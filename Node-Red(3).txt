@@ -1,0 +1,83 @@
+[
+    {
+        "id": "9275065e.7277e8",
+        "type": "tab",
+        "label": "Flow 3"
+    },
+    {
+        "id": "edf83e4f.6d8f8",
+        "type": "inject",
+        "z": "9275065e.7277e8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "163a3286.7874cd"
+            ]
+        ]
+    },
+    {
+        "id": "163a3286.7874cd",
+        "type": "function",
+        "z": "9275065e.7277e8",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey: \"9NWL7TSbARWMjTz9\"\n    };\nmsg.payload= \"Temperature,,60\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "c92e0b57.afdb58"
+            ]
+        ]
+    },
+    {
+        "id": "c92e0b57.afdb58",
+        "type": "http request",
+        "z": "9275065e.7277e8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/D4gOdKje/datapoints.csv",
+        "tls": "",
+        "x": 470,
+        "y": 260,
+        "wires": [
+            [
+                "db79eb6f.f16548",
+                "53b7f8ee.4bc5b8"
+            ]
+        ]
+    },
+    {
+        "id": "db79eb6f.f16548",
+        "type": "http response",
+        "z": "9275065e.7277e8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 646,
+        "y": 258,
+        "wires": []
+    },
+    {
+        "id": "53b7f8ee.4bc5b8",
+        "type": "debug",
+        "z": "9275065e.7277e8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 660,
+        "y": 199,
+        "wires": []
+    }
+]
